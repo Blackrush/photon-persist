@@ -1,0 +1,15 @@
+language: scala
+scala:
+  - 2.10.2
+  - 2.10.1
+  - 2.10.0
+jdk:
+  - oraclejdk7
+  - openjdk7
+  - oraclejdk6
+  - openjdk6
+branches:
+  only:
+    - master
+before_install:
+  - chmod +x ./gradlew
