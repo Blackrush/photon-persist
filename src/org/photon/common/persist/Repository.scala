@@ -12,7 +12,7 @@ trait Repository[T <: Model] {
   
   
   def remove(o: T): Future[Unit] =
-    removeById(o.id) map { _ => Future.Done }
+    removeById(o.id) flatMap { _ => Future.Done }
 
   def filter[V: Parameter](column: String, value: V): Future[Seq[T]] =
     where(s"$column=?")(implicitly[Parameter[V]].set(_, 1, value))
