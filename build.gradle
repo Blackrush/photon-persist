@@ -1,0 +1,36 @@
+allprojects {
+    version = '1.0-master'
+
+    apply plugin: 'scala'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+	    compile "org.scala-lang:scala-library:${scalaStdlibVersion}"
+        compile "com.typesafe:scalalogging-slf4j_${scalaVersion}:${typesafeLoggingVersion}"
+        compile "com.twitter:util-core_${scalaVersion}:${twitterUtilVersion}"
+    }
+
+    sourceSets {
+        main {
+            scala {
+                srcDirs = ['src']
+            }
+            resources {
+                srcDirs = ['src']
+            }
+        }
+        test {
+            scala {
+                srcDirs = ['test']
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.8'
+}
