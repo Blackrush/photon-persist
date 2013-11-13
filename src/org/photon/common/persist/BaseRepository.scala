@@ -15,14 +15,14 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   val columns: Seq[String]
   val allColumns: Seq[String] = pkColumns ++ columns
 
-  def ids(c: Seq[String]) = c.mkString(", ") // IDENTS
-  def phr(c: Seq[String]) = c.map(_ => "?").mkString(", ") // PLACEHOLDERS
-  def idsWphr(c: Seq[String]) = c.map(c => c + "=?").mkString(", ") // IDENTS WITH PLACEHOLDER
+  def ids(c: Seq[String], delim: String = ", ") = c.mkString(delim) // IDENTS
+  def phr(c: Seq[String], delim: String = ", ") = c.map(_ => "?").mkString(delim) // PLACEHOLDERS
+  def idsWphr(c: Seq[String], delim: String = ", ") = c.map(c => c + "=?").mkString(delim) // IDENTS WITH PLACEHOLDER
 
   val selectQuery = s"SELECT ${ids(allColumns)} FROM $table"
   val insertQuery = s"INSERT INTO $table(${ids(columns)}) VALUES(${phr(columns)}) RETURNING (${ids(pkColumns)})"
-  val updateQuery = s"UPDATE $table SET ${idsWphr(columns)} WHERE ${idsWphr(pkColumns)}"
-  val deleteQuery = s"DELETE FROM $table WHERE ${idsWphr(pkColumns)}"
+  val updateQuery = s"UPDATE $table SET ${idsWphr(columns)} WHERE ${idsWphr(pkColumns, " AND ")}"
+  val deleteQuery = s"DELETE FROM $table WHERE ${idsWphr(pkColumns, " AND ")}"
 
   def buildModel(rs: ResultSet): T
   def bindParams(ps: PreparedStatement, o: T)
