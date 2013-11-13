@@ -27,6 +27,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def buildModel(rs: ResultSet): T
   def bindParams(ps: PreparedStatement, o: T)
   def setPersisted(o: T, newId: T#PrimaryKey): T
+  def setRemoved(o: T): T
 
   def where[Result, Ignored](query: String)(fn: (PreparedStatement) => Ignored)(implicit cbf: CanBuildFrom[_, T, Result]): Future[Result] = Async {
     connection.prepare(selectQuery + " " + query) { ps =>
@@ -61,10 +62,20 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
     case ModelState.Removed => Future.exception(PersistException(reason = "you must not persist a removed model"))
   }
 
-  def removeById(id: T#PrimaryKey): Future[Boolean] = Async {
-    connection.prepare(deleteQuery) { ps =>
-      ps.set(1, id)
-      ps.executeUpdate() == 1
+
+  def remove(o: T): Future[T] = o.state match {
+    case ModelState.None | ModelState.Removed => Future(o) // nothing to do or already removed so who cares
+
+    case ModelState.Persisted => Async {
+      connection.prepare(deleteQuery) { ps =>
+        ps.set(1, o.id: T#PrimaryKey)
+
+        ps.executeUpdate() match {
+          case 1 => setRemoved(o)
+          case n if n <= 0 => throw PersistException("the sql delete query has not affected any rows")
+          case n if n >= 2 => throw PersistException("the sql delete query has affected more than one row")
+        }
+      }
     }
   }
 }

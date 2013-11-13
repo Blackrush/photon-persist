@@ -30,7 +30,8 @@ object Example {
       ps.set(2, o.someValue)
     }
 
-    def setPersisted(o: MyModel, newId: Long) = o.copy(id = newId, state = ModelState.Persisted)
+    def setPersisted(o: MyModel, newId: MyModel#PrimaryKey) = o.copy(id = newId, state = ModelState.Persisted)
+    def setRemoved(o: MyModel) = o.copy(state = ModelState.Removed)
   }
 
   def main(args: Array[String]) {

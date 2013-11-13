@@ -8,11 +8,7 @@ trait Repository[T <: Model] {
   def findById(id: T#PrimaryKey): Future[T]
   def where[Result, Ignored](query: String)(fn: PreparedStatement => Ignored)(implicit cbf: CanBuildFrom[_, T, Result]): Future[Result]
   def persist(o: T): Future[T]
-  def removeById(id: T#PrimaryKey): Future[Boolean]
-  
-  
-  def remove(o: T): Future[Unit] =
-    removeById(o.id) flatMap { _ => Future.Done }
+  def remove(o: T): Future[T]
 
   def filter[V: Parameter](column: String, value: V): Future[Seq[T]] =
     where(s"$column=?")(implicitly[Parameter[V]].set(_, 1, value))
