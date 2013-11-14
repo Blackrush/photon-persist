@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>BaseRepository - photon-persist 0.1.0 API - org.photon.common.persist.BaseRepository</title>
-          <meta name="description" content="BaseRepository - photon - persist 0.1.0 API - org.photon.common.persist.BaseRepository" />
-          <meta name="keywords" content="BaseRepository photon persist 0.1.0 API org.photon.common.persist.BaseRepository" />
+          <title>BaseRepository - photon-persist 0.1.1 API - org.photon.common.persist.BaseRepository</title>
+          <meta name="description" content="BaseRepository - photon - persist 0.1.1 API - org.photon.common.persist.BaseRepository" />
+          <meta name="keywords" content="BaseRepository photon persist 0.1.1 API org.photon.common.persist.BaseRepository" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -161,6 +161,19 @@
       </span>
       <span class="symbol">
         <span class="name">setPersisted</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span></span>, <span name="newId">newId: <span class="extype" name="org.photon.common.persist.Model.PrimaryKey">T.PrimaryKey</span></span>)</span><span class="result">: <span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.photon.common.persist.BaseRepository#setRemoved" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="setRemoved(o:T):T"></a>
+      <a id="setRemoved(T):T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setRemoved</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span></span>
       </span>
       </h4>
       
@@ -416,28 +429,28 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="org.photon.common.persist.BaseRepository#ids" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ids(c:Seq[String]):String"></a>
-      <a id="ids(Seq[String]):String"></a>
+      <a id="ids(c:Seq[String],delim:String):String"></a>
+      <a id="ids(Seq[String],String):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ids</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">ids</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="delim">delim: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;, &quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       
     </li><li name="org.photon.common.persist.BaseRepository#idsWphr" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="idsWphr(c:Seq[String]):String"></a>
-      <a id="idsWphr(Seq[String]):String"></a>
+      <a id="idsWphr(c:Seq[String],delim:String):String"></a>
+      <a id="idsWphr(Seq[String],String):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">idsWphr</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">idsWphr</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="delim">delim: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;, &quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       
@@ -520,41 +533,28 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.BaseRepository">BaseRepository</a> → <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
     </li><li name="org.photon.common.persist.BaseRepository#phr" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="phr(c:Seq[String]):String"></a>
-      <a id="phr(Seq[String]):String"></a>
+      <a id="phr(c:Seq[String],delim:String):String"></a>
+      <a id="phr(Seq[String],String):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">phr</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">phr</span><span class="params">(<span name="c">c: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="delim">delim: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;, &quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       
-    </li><li name="org.photon.common.persist.Repository#remove" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="remove(o:T):com.twitter.util.Future[Unit]"></a>
-      <a id="remove(T):Future[Unit]"></a>
+    </li><li name="org.photon.common.persist.BaseRepository#remove" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="remove(o:T):com.twitter.util.Future[T]"></a>
+      <a id="remove(T):Future[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">remove</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
-    </li><li name="org.photon.common.persist.BaseRepository#removeById" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="removeById(id:T#PrimaryKey):com.twitter.util.Future[Boolean]"></a>
-      <a id="removeById(T.PrimaryKey):Future[Boolean]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">removeById</span><span class="params">(<span name="id">id: <span class="extype" name="org.photon.common.persist.Model.PrimaryKey">T.PrimaryKey</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
+        <span class="name">remove</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="org.photon.common.persist.BaseRepository.T">T</span>]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.BaseRepository">BaseRepository</a> → <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>

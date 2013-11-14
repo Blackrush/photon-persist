@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Repository - photon-persist 0.1.0 API - org.photon.common.persist.Repository</title>
-          <meta name="description" content="Repository - photon - persist 0.1.0 API - org.photon.common.persist.Repository" />
-          <meta name="keywords" content="Repository photon persist 0.1.0 API org.photon.common.persist.Repository" />
+          <title>Repository - photon-persist 0.1.1 API - org.photon.common.persist.Repository</title>
+          <meta name="description" content="Repository - photon - persist 0.1.1 API - org.photon.common.persist.Repository" />
+          <meta name="keywords" content="Repository photon persist 0.1.1 API org.photon.common.persist.Repository" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -112,16 +112,16 @@
       </span>
       </h4>
       
-    </li><li name="org.photon.common.persist.Repository#removeById" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="removeById(id:T#PrimaryKey):com.twitter.util.Future[Boolean]"></a>
-      <a id="removeById(T.PrimaryKey):Future[Boolean]"></a>
+    </li><li name="org.photon.common.persist.Repository#remove" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="remove(o:T):com.twitter.util.Future[T]"></a>
+      <a id="remove(T):Future[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">removeById</span><span class="params">(<span name="id">id: <span class="extype" name="org.photon.common.persist.Model.PrimaryKey">T.PrimaryKey</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
+        <span class="name">remove</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.Repository.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="org.photon.common.persist.Repository.T">T</span>]</span>
       </span>
       </h4>
       
@@ -389,19 +389,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.photon.common.persist.Repository#remove" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="remove(o:T):com.twitter.util.Future[Unit]"></a>
-      <a id="remove(T):Future[Unit]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">remove</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.Repository.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

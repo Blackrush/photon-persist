@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Parameters - photon-persist 0.1.0 API - org.photon.common.persist.Parameters</title>
-          <meta name="description" content="Parameters - photon - persist 0.1.0 API - org.photon.common.persist.Parameters" />
-          <meta name="keywords" content="Parameters photon persist 0.1.0 API org.photon.common.persist.Parameters" />
+          <title>Parameters - photon-persist 0.1.1 API - org.photon.common.persist.Parameters</title>
+          <meta name="description" content="Parameters - photon - persist 0.1.1 API - org.photon.common.persist.Parameters" />
+          <meta name="keywords" content="Parameters photon persist 0.1.1 API org.photon.common.persist.Parameters" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -150,6 +150,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.photon.common.persist.Parameters.BooleanParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BooleanParameter"></a>
+      <a id="BooleanParameter:BooleanParameter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Parameters$$BooleanParameter$.html"><span class="name">BooleanParameter</span></a><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
+      </span>
+      </h4>
+      
     </li><li name="org.photon.common.persist.Parameters.ByteParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ByteParameter"></a>
       <a id="ByteParameter:ByteParameter"></a>
@@ -160,6 +173,45 @@
       </span>
       <span class="symbol">
         <a href="Parameters$$ByteParameter$.html"><span class="name">ByteParameter</span></a><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Byte">Byte</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.photon.common.persist.Parameters.DoubleParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DoubleParameter"></a>
+      <a id="DoubleParameter:DoubleParameter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Parameters$$DoubleParameter$.html"><span class="name">DoubleParameter</span></a><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Double">Double</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.photon.common.persist.Parameters#DurationParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DurationParameter(implicittimeUnit:concurrent.duration.TimeUnit):org.photon.common.persist.Parameter[com.twitter.util.Duration]"></a>
+      <a id="DurationParameter(TimeUnit):Parameter[Duration]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DurationParameter</span><span class="params">(<span class="implicit">implicit </span><span name="timeUnit">timeUnit: <span class="extype" name="scala.concurrent.duration.TimeUnit">TimeUnit</span> = <span class="symbol">MILLISECONDS</span></span>)</span><span class="result">: <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="com.twitter.util.Duration">Duration</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.photon.common.persist.Parameters.FloatParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FloatParameter"></a>
+      <a id="FloatParameter:FloatParameter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Parameters$$FloatParameter$.html"><span class="name">FloatParameter</span></a><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Float">Float</span>]</span>
       </span>
       </h4>
       
@@ -189,6 +241,19 @@
       </span>
       </h4>
       
+    </li><li name="org.photon.common.persist.Parameters#OptionParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OptionParameter[T](implicitp:org.photon.common.persist.Parameter[T],implicitev:&lt;:&lt;[Null,T]):org.photon.common.persist.Parameter[Option[T]]"></a>
+      <a id="OptionParameter[T](Parameter[T],&lt;:&lt;[Null,T]):Parameter[Option[T]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OptionParameter</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="p">p: <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="org.photon.common.persist.Parameters.OptionParameter.T">T</span>]</span>, <span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Null">Null</span>, <span class="extype" name="org.photon.common.persist.Parameters.OptionParameter.T">T</span>]</span>)</span><span class="result">: <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.photon.common.persist.Parameters.OptionParameter.T">T</span>]]</span>
+      </span>
+      </h4>
+      
     </li><li name="org.photon.common.persist.Parameters.ShortParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ShortParameter"></a>
       <a id="ShortParameter:ShortParameter"></a>
@@ -212,6 +277,19 @@
       </span>
       <span class="symbol">
         <a href="Parameters$$StringParameter$.html"><span class="name">StringParameter</span></a><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.photon.common.persist.Parameters.TimeParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TimeParameter"></a>
+      <a id="TimeParameter:TimeParameter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Parameters$$TimeParameter$.html"><span class="name">TimeParameter</span></a><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="com.twitter.util.Time">Time</span>]</span>
       </span>
       </h4>
       

@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>ShortParameter - photon-persist 0.1.1 API - org.photon.common.persist.Parameters.ShortParameter</title>
-          <meta name="description" content="ShortParameter - photon - persist 0.1.1 API - org.photon.common.persist.Parameters.ShortParameter" />
-          <meta name="keywords" content="ShortParameter photon persist 0.1.1 API org.photon.common.persist.Parameters.ShortParameter" />
+          <title>TimeParameter - photon-persist 0.1.1 API - org.photon.common.persist.Parameters.TimeParameter</title>
+          <meta name="description" content="TimeParameter - photon - persist 0.1.1 API - org.photon.common.persist.Parameters.TimeParameter" />
+          <meta name="keywords" content="TimeParameter photon persist 0.1.1 API org.photon.common.persist.Parameters.TimeParameter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'org.photon.common.persist.Parameters$$ShortParameter$';
+            var hash = 'org.photon.common.persist.Parameters$$TimeParameter$';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -26,7 +26,7 @@
       <div id="definition">
         <img src="../../../../lib/object_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.photon">photon</a>.<a href="../package.html" class="extype" name="org.photon.common">common</a>.<a href="package.html" class="extype" name="org.photon.common.persist">persist</a>.<a href="Parameters$.html" class="extype" name="org.photon.common.persist.Parameters">Parameters</a></p>
-        <h1>ShortParameter</h1>
+        <h1>TimeParameter</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,13 +35,13 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">ShortParameter</span><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Short">Short</span>]</span>
+        <span class="name">TimeParameter</span><span class="result"> extends <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="com.twitter.util.Time">Time</span>]</span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Short">Short</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="com.twitter.util.Time">Time</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -59,7 +59,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.photon.common.persist.Parameters.ShortParameter"><span>ShortParameter</span></li><li class="in" name="org.photon.common.persist.Parameter"><span>Parameter</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.photon.common.persist.Parameters.TimeParameter"><span>TimeParameter</span></li><li class="in" name="org.photon.common.persist.Parameter"><span>Parameter</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -227,32 +227,32 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.photon.common.persist.Parameters.ShortParameter#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="get(rs:java.sql.ResultSet,name:String):Short"></a>
-      <a id="get(ResultSet,String):Short"></a>
+    </li><li name="org.photon.common.persist.Parameters.TimeParameter#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get(rs:java.sql.ResultSet,name:String):com.twitter.util.Time"></a>
+      <a id="get(ResultSet,String):Time"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">get</span><span class="params">(<span name="rs">rs: <span class="extype" name="java.sql.ResultSet">ResultSet</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+        <span class="name">get</span><span class="params">(<span name="rs">rs: <span class="extype" name="java.sql.ResultSet">ResultSet</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Time">Time</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Parameters.ShortParameter">ShortParameter</a> → <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a></dd></dl></div>
-    </li><li name="org.photon.common.persist.Parameters.ShortParameter#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="get(rs:java.sql.ResultSet,index:Int):Short"></a>
-      <a id="get(ResultSet,Int):Short"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Parameters.TimeParameter">TimeParameter</a> → <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a></dd></dl></div>
+    </li><li name="org.photon.common.persist.Parameters.TimeParameter#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get(rs:java.sql.ResultSet,index:Int):com.twitter.util.Time"></a>
+      <a id="get(ResultSet,Int):Time"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">get</span><span class="params">(<span name="rs">rs: <span class="extype" name="java.sql.ResultSet">ResultSet</span></span>, <span name="index">index: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+        <span class="name">get</span><span class="params">(<span name="rs">rs: <span class="extype" name="java.sql.ResultSet">ResultSet</span></span>, <span name="index">index: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Time">Time</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Parameters.ShortParameter">ShortParameter</a> → <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Parameters.TimeParameter">TimeParameter</a> → <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -331,19 +331,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.photon.common.persist.Parameters.ShortParameter#set" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="set(ps:java.sql.PreparedStatement,index:Int,value:Short):Unit"></a>
-      <a id="set(PreparedStatement,Int,Short):Unit"></a>
+    </li><li name="org.photon.common.persist.Parameters.TimeParameter#set" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="set(ps:java.sql.PreparedStatement,index:Int,value:com.twitter.util.Time):Unit"></a>
+      <a id="set(PreparedStatement,Int,Time):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">set</span><span class="params">(<span name="ps">ps: <span class="extype" name="java.sql.PreparedStatement">PreparedStatement</span></span>, <span name="index">index: <span class="extype" name="scala.Int">Int</span></span>, <span name="value">value: <span class="extype" name="scala.Short">Short</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">set</span><span class="params">(<span name="ps">ps: <span class="extype" name="java.sql.PreparedStatement">PreparedStatement</span></span>, <span name="index">index: <span class="extype" name="scala.Int">Int</span></span>, <span name="value">value: <span class="extype" name="com.twitter.util.Time">Time</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Parameters.ShortParameter">ShortParameter</a> → <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Parameters.TimeParameter">TimeParameter</a> → <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -437,7 +437,7 @@
 
         <div id="inheritedMembers">
         <div class="parent" name="org.photon.common.persist.Parameter">
-              <h3>Inherited from <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="scala.Short">Short</span>]</h3>
+              <h3>Inherited from <a href="Parameter.html" class="extype" name="org.photon.common.persist.Parameter">Parameter</a>[<span class="extype" name="com.twitter.util.Time">Time</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
