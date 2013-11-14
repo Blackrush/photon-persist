@@ -1,4 +1,4 @@
-photon-persist
+photon-persist [![Build Status](https://travis-ci.org/Blackrush/photon-persist.png?branch=master)](https://travis-ci.org/Blackrush/photon-persist)
 ==============
 
 A JDBC wrapper without any runtime overhead
