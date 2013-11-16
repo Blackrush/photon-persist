@@ -13,6 +13,9 @@ dependencies {
     compile "org.scala-lang:scala-library:${scalaStdlibVersion}"
     compile "com.typesafe:scalalogging-slf4j_${scalaVersion}:${typesafeLoggingVersion}"
     compile "com.twitter:util-core_${scalaVersion}:${twitterUtilVersion}"
+
+    testCompile 'org.scalatest:scalatest_2.10:2.0'
+    testRuntime 'org.postgresql:postgresql:9.2-1003-jdbc3'
 }
 
 sourceSets {
@@ -33,6 +36,13 @@ sourceSets {
 
 scaladoc {
     source sourceSets.main.scala
+}
+
+test << {
+    ant.taskdef(name: 'scalatest', classname: 'org.scalatest.tools.ScalaTestAntTask', classpath: classpath.asPath)
+    ant.scalatest(runpath: testClassesDir, haltonfailure: 'true', fork: 'false') {
+        reporter(type: 'stderr')
+    }
 }
 
 task wrapper(type: Wrapper) {
