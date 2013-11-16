@@ -13,3 +13,7 @@ branches:
     - master
 before_install:
   - chmod +x ./gradlew
+before_script:
+  - psql -U postgres -c 'create database photon_persist_test;'
+script:
+  - ./gradlew check -Dphoton-persist.tests.db.driver="org.postgresql.Driver" -Dphoton-persist.tests.db.dsn="jdbc:postgresql://localhost/photon_persist_test?user=postgres"
