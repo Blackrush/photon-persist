@@ -1,11 +1,11 @@
 package org.photon.common.persist
 
-import org.scalatest.{BeforeAndAfter, ShouldMatchers, FreeSpec}
+import org.scalatest.{Matchers, BeforeAndAfter, FreeSpec}
 import java.sql.{DriverManager, ResultSet, PreparedStatement, Connection}
 import java.util.concurrent.{Executors, Executor}
 import com.twitter.util.Await
 
-class BaseRepositoryTest extends FreeSpec with ShouldMatchers with BeforeAndAfter {
+class BaseRepositoryTest extends FreeSpec with Matchers with BeforeAndAfter {
 
   import Parameters._
   import Connections._
@@ -69,60 +69,62 @@ class BaseRepositoryTest extends FreeSpec with ShouldMatchers with BeforeAndAfte
 
     "should well construct SQL queries" - {
       "insert" in new Fixture {
-        repo.insertQuery should be === "INSERT INTO my_repository(value) VALUES(?) RETURNING (id)"
+        repo.insertQuery should === ("INSERT INTO my_repository(value) VALUES(?)")
       }
       "update" in new Fixture {
-        repo.updateQuery should be === "UPDATE my_repository SET value=? WHERE id=?"
+        repo.updateQuery should === ("UPDATE my_repository SET value=? WHERE id=?")
       }
       "delete" in new Fixture {
-        repo.deleteQuery should be === "DELETE FROM my_repository WHERE id=?"
+        repo.deleteQuery should === ("DELETE FROM my_repository WHERE id=?")
       }
       "select" in new Fixture {
-        repo.selectQuery should be === "SELECT id, value FROM my_repository"
+        repo.selectQuery should === ("SELECT id, value FROM my_repository")
       }
     }
 
-    "should successfully find values" - {
-      "by id" in new Fixture {
-        val v = result(repo findById 1)
-        v.id should be === 1
-        v.value should be === "such name"
-        v.state should be === ModelState.Persisted
+    "should successfully" - {
+      "find values" - {
+        "by id" in new Fixture {
+          val v = result(repo findById 1)
+          v.id should === (1)
+          v.value should === ("such name")
+          v.state should === (ModelState.Persisted)
+        }
+
+        "by value" in new Fixture {
+          val v = result(repo.find("value", "such name"))
+          v.id should === (1)
+          v.value should === ("such name")
+          v.state should === (ModelState.Persisted)
+        }
       }
 
-      "by value" in new Fixture {
-        val v = result(repo.find("value", "such name"))
-        v.id should be === 1
-        v.value should be === "such name"
-        v.state should be === ModelState.Persisted
+      "insert values" in new Fixture {
+        var v = MyModel(-1, "wow")
+        v.state should === (ModelState.None)
+
+        v = result(repo persist v)
+        v.id should !== (-1)
+        v.state should === (ModelState.Persisted)
       }
-    }
 
-    "should insert values" in new Fixture {
-      var v = MyModel(-1, "wow")
-      v.state should be === ModelState.None
+      "update values" in new Fixture {
+        var v = result(repo findById 1)
+        v.value should === ("such name")
+        v.state should === (ModelState.Persisted)
 
-      v = result(repo persist v)
-      v.id should not be (-1)
-      v.state should be === ModelState.Persisted
-    }
-    
-    "should update values" in new Fixture {
-      var v = result(repo findById 1)
-      v.value should be === "such name"
-      v.state should be === ModelState.Persisted
+        v = result(repo persist v.copy(value = "such edit"))
+        v.value should === ("such edit")
+        v.state should === (ModelState.Persisted)
+      }
 
-      v = result(repo persist v.copy(value = "such edit"))
-      v.value should be === "such edit"
-      v.state should be === ModelState.Persisted
-    }
+      "remove values" in new Fixture {
+        var v = result(repo findById 1)
+        v.state should === (ModelState.Persisted)
 
-    "should remove values" in new Fixture {
-      var v = result(repo findById 1)
-      v.state should be === ModelState.Persisted
-
-      v = result(repo remove v)
-      v.state should be === ModelState.Removed
+        v = result(repo remove v)
+        v.state should === (ModelState.Removed)
+      }
     }
 
   }
