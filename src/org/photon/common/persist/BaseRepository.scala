@@ -30,7 +30,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def setRemoved(o: T): T
 
   def where[Result, Ignored](query: String)(fn: (PreparedStatement) => Ignored)(implicit cbf: CanBuildFrom[_, T, Result]): Future[Result] = Async {
-    connection.prepare(selectQuery + " " + query) { ps =>
+    connection.prepare(selectQuery + " WHERE " + query) { ps =>
       fn(ps)
       ps.result(buildModel)
     }

@@ -15,9 +15,9 @@ object Connections {
     }
   }
 
-  implicit class RichStatement[T <: Statement](val s: Statement) extends AnyVal {
-    def result[R, Result](fn: ResultSet => R)(implicit cbf: CanBuildFrom[_, R, Result]): Result = {
-      val rs = s.getResultSet
+  implicit class RichStatement(val s: Statement) extends AnyVal {
+    def result[R, Result](query: String)(fn: ResultSet => R)(implicit cbf: CanBuildFrom[_, R, Result]): Result = {
+      val rs = s.executeQuery(query)
       try {
         val builder = cbf()
         while (rs.next()) builder += fn(rs)
@@ -28,8 +28,19 @@ object Connections {
     }
   }
 
-  implicit class RichPreparedStatement[T <: PreparedStatement](val s: PreparedStatement) extends AnyVal {
+  implicit class RichPreparedStatement(val s: PreparedStatement) extends AnyVal {
     def set[R: Parameter](index: Int, value: R): Unit = implicitly[Parameter[R]].set(s, index, value)
+
+    def result[R, Result](fn: ResultSet => R)(implicit cbf: CanBuildFrom[_, R, Result]): Result = {
+      val rs = s.executeQuery()
+      try {
+        val builder = cbf()
+        while (rs.next()) builder += fn(rs)
+        builder.result
+      } finally {
+        rs.close()
+      }
+    }
   }
 
   implicit class RichResultSet[T <: ResultSet](val rs: T) extends AnyVal {
