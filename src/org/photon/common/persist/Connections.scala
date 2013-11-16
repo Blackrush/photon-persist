@@ -5,25 +5,17 @@ import scala.collection.generic.CanBuildFrom
 
 object Connections {
   implicit class RichConnection[T <: Connection](val c: Connection) extends AnyVal {
-    def prepare[R](query: String)(fn: PreparedStatement => R): R = {
-      val stmt = c.prepareStatement(query)
+    def prepare[R](query: String, returnGeneratedKeys: Boolean = false)(fn: PreparedStatement => R): R = {
+      val stmt =
+        if (returnGeneratedKeys)
+          c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)
+        else
+          c.prepareStatement(query)
+
       try {
         fn(stmt)
       } finally {
         stmt.close()
-      }
-    }
-  }
-
-  implicit class RichStatement(val s: Statement) extends AnyVal {
-    def result[R, Result](query: String)(fn: ResultSet => R)(implicit cbf: CanBuildFrom[_, R, Result]): Result = {
-      val rs = s.executeQuery(query)
-      try {
-        val builder = cbf()
-        while (rs.next()) builder += fn(rs)
-        builder.result
-      } finally {
-        rs.close()
       }
     }
   }
@@ -46,5 +38,11 @@ object Connections {
   implicit class RichResultSet[T <: ResultSet](val rs: T) extends AnyVal {
     def get[R: Parameter](index: Int): R = implicitly[Parameter[R]].get(rs, index)
     def get[R: Parameter](name: String): R = implicitly[Parameter[R]].get(rs, name)
+
+    def map[R, Result](fn: ResultSet => R)(implicit cbf: CanBuildFrom[_, R, Result]): Result = {
+      val builder = cbf()
+      while (rs.next()) builder += fn(rs)
+      builder.result
+    }
   }
 }

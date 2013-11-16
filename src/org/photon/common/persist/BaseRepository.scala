@@ -20,7 +20,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def idsWphr(c: Seq[String], delim: String = ", ") = c.map(c => c + "=?").mkString(delim) // IDENTS WITH PLACEHOLDER
 
   val selectQuery = s"SELECT ${ids(allColumns)} FROM $table"
-  val insertQuery = s"INSERT INTO $table(${ids(columns)}) VALUES(${phr(columns)}) RETURNING (${ids(pkColumns)})"
+  val insertQuery = s"INSERT INTO $table(${ids(columns)}) VALUES(${phr(columns)})"
   val updateQuery = s"UPDATE $table SET ${idsWphr(columns)} WHERE ${idsWphr(pkColumns, " AND ")}"
   val deleteQuery = s"DELETE FROM $table WHERE ${idsWphr(pkColumns, " AND ")}"
 
@@ -40,12 +40,12 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
 
   def persist(o: T): Future[T] = o.state match {
     case ModelState.None => Async {
-      connection.prepare(insertQuery) { ps =>
+      connection.prepare(insertQuery, returnGeneratedKeys = true) { ps =>
         bindParams(ps, o)
         ps.set(columns.size, o.id: T#PrimaryKey)
 
-        import Utils.optionCanBuildFrom
-        ps.result[T#PrimaryKey, Option[T#PrimaryKey]](_.get(1)) match {
+        ps.executeUpdate()
+        ps.getGeneratedKeys.map(_.get[T#PrimaryKey](1)).headOption match {
           case Some(id) => setPersisted(o, id)
           case None => throw PersistException(reason = "database did not returned new id")
         }
