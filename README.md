@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-  compile 'org.photon.common:photon-persist:0.1.0'
+  compile 'org.photon.common:photon-persist:0.1.1'
 }
 ```
 
