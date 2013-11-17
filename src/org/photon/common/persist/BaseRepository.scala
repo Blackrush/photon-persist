@@ -18,7 +18,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def ids(c: Seq[String], delim: String = ", ") = c.mkString(delim) // IDENTS
   def phr(c: Seq[String], delim: String = ", ") = c.map(_ => "?").mkString(delim) // PLACEHOLDERS
   def idsWphr(c: Seq[String], delim: String = ", ") = c.map(c => c + "=?").mkString(delim) // IDENTS WITH PLACEHOLDER
-  def quoteColumns(c: Seq[String]): = c.map(c => s"`$s`")
+  def quoteColumns(c: Seq[String]) = c.map(c => s"`$c`")
 
   // @TODO Currently not using quoteColumns. Should it ?
   // Also, I want my pipe operator.
