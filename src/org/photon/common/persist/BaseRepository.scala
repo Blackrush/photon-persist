@@ -18,7 +18,10 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def ids(c: Seq[String], delim: String = ", ") = c.mkString(delim) // IDENTS
   def phr(c: Seq[String], delim: String = ", ") = c.map(_ => "?").mkString(delim) // PLACEHOLDERS
   def idsWphr(c: Seq[String], delim: String = ", ") = c.map(c => c + "=?").mkString(delim) // IDENTS WITH PLACEHOLDER
+  def quoteColumns(c: Seq[String]): = c.map(c => s"`$s`")
 
+  // @TODO Currently not using quoteColumns. Should it ?
+  // Also, I want my pipe operator.
   val selectQuery = s"SELECT ${ids(allColumns)} FROM $table"
   val insertQuery = s"INSERT INTO $table(${ids(columns)}) VALUES(${phr(columns)})"
   val updateQuery = s"UPDATE $table SET ${idsWphr(columns)} WHERE ${idsWphr(pkColumns, " AND ")}"
@@ -41,7 +44,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
     }
   }
 
-  def findById(id: T#PrimaryKey): Future[T] = where(idsWphr(pkColumns))(_.set(1, id)).map(_.head) // force single value?
+  def find(id: T#PrimaryKey): Future[T] = where(idsWphr(pkColumns))(_.set(1, id)).map(_.head) // force single value?
 
   def persist(o: T): Future[T] = o.state match {
     case ModelState.None => Async {

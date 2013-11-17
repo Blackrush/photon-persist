@@ -6,7 +6,7 @@ import scala.collection.{TraversableLike, mutable}
 object Utils {
   class OptionBuilder[T](var option: Option[T]) extends mutable.Builder[T, Option[T]] {
     def +=(elem: T) = {
-      if (option.isDefined) throw new IllegalStateException("an Option can only store one, and only one, instance")
+      if (option.isDefined) throw new IllegalStateException("an Option can store one, and only one, instance")
       option = Some(elem)
       this
     }

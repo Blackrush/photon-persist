@@ -25,7 +25,13 @@ dependencies {
 
 ### With SBT
 
-_todo_
+(**note yet published**)
+
+```scala
+libraryDependencies := Seq(
+  "org.photon.common" %% "photon-persist" % "0.1.1",
+)
+```
 
 ### With Maven
 

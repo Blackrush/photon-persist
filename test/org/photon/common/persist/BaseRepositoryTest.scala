@@ -85,14 +85,14 @@ class BaseRepositoryTest extends FreeSpec with Matchers with BeforeAndAfter {
     "should successfully" - {
       "find values" - {
         "by id" in new Fixture {
-          val v = result(repo findById 1)
+          val v = result(repo find 1)
           v.id should === (1)
           v.value should === ("such name")
           v.state should === (ModelState.Persisted)
         }
 
         "by value" in new Fixture {
-          val v = result(repo.find("value", "such name"))
+          val v = result(repo.findBy("value", "such name"))
           v.id should === (1)
           v.value should === ("such name")
           v.state should === (ModelState.Persisted)
@@ -119,7 +119,7 @@ class BaseRepositoryTest extends FreeSpec with Matchers with BeforeAndAfter {
       }
 
       "update values" in new Fixture {
-        var v = result(repo findById 1)
+        var v = result(repo find 1)
         v.value should === ("such name")
         v.state should === (ModelState.Persisted)
 
@@ -129,7 +129,7 @@ class BaseRepositoryTest extends FreeSpec with Matchers with BeforeAndAfter {
       }
 
       "remove values" in new Fixture {
-        var v = result(repo findById 1)
+        var v = result(repo find 1)
         v.state should === (ModelState.Persisted)
 
         v = result(repo remove v)
