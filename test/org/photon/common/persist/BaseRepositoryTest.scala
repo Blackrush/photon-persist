@@ -97,6 +97,16 @@ class BaseRepositoryTest extends FreeSpec with Matchers with BeforeAndAfter {
           v.value should === ("such name")
           v.state should === (ModelState.Persisted)
         }
+
+        "without filter" in new Fixture {
+          val v = result(repo.all)
+          v should have size 1
+
+          val h = v.head
+          h.id should === (1)
+          h.value should === ("such name")
+          h.state should === (ModelState.Persisted)
+        }
       }
 
       "insert values" in new Fixture {

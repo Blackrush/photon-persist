@@ -29,10 +29,15 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def setPersisted(o: T, newId: T#PrimaryKey): T
   def setRemoved(o: T): T
 
+
+  def all[Result](implicit cbf: CanBuildFrom[_, T, Result]): Future[Result] = Async {
+    connection.statement(selectQuery)(_.getResultSet.map(buildModel))
+  }
+
   def where[Result, Ignored](query: String)(fn: (PreparedStatement) => Ignored)(implicit cbf: CanBuildFrom[_, T, Result]): Future[Result] = Async {
     connection.prepare(selectQuery + " WHERE " + query) { ps =>
       fn(ps)
-      ps.result(buildModel)
+      ps.executeQuery().map(buildModel)
     }
   }
 

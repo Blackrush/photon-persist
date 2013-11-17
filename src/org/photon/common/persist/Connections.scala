@@ -18,21 +18,26 @@ object Connections {
         stmt.close()
       }
     }
+
+    def statement[R](query: String, returnGeneratedKeys: Boolean = false)(fn: Statement => R): R = {
+      val stmt = c.createStatement()
+
+      if (returnGeneratedKeys) {
+        stmt.execute(query, Statement.RETURN_GENERATED_KEYS)
+      } else {
+        stmt.execute(query)
+      }
+
+      try {
+        fn(stmt)
+      } finally {
+        stmt.close()
+      }
+    }
   }
 
   implicit class RichPreparedStatement(val s: PreparedStatement) extends AnyVal {
     def set[R: Parameter](index: Int, value: R): Unit = implicitly[Parameter[R]].set(s, index, value)
-
-    def result[R, Result](fn: ResultSet => R)(implicit cbf: CanBuildFrom[_, R, Result]): Result = {
-      val rs = s.executeQuery()
-      try {
-        val builder = cbf()
-        while (rs.next()) builder += fn(rs)
-        builder.result
-      } finally {
-        rs.close()
-      }
-    }
   }
 
   implicit class RichResultSet[T <: ResultSet](val rs: T) extends AnyVal {
