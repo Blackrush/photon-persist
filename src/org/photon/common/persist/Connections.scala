@@ -38,6 +38,8 @@ object Connections {
 
   implicit class RichPreparedStatement(val s: PreparedStatement) extends AnyVal {
     def set[R: Parameter](index: Int, value: R): Unit = implicitly[Parameter[R]].set(s, index, value)
+
+    def set[R](value: R)(implicit index: Incremented[Int], p: Parameter[R]): Unit = set(index.get, value)
   }
 
   implicit class RichResultSet[T <: ResultSet](val rs: T) extends AnyVal {

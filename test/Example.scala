@@ -1,6 +1,6 @@
 import java.sql.{ResultSet, PreparedStatement}
 import java.util.concurrent.Executors
-import org.photon.common.persist.{BaseRepository, ModelState, Model}
+import org.photon.common.persist.{Incremented, BaseRepository, ModelState, Model}
 
 object Example {
   import ModelState.ModelState
@@ -25,9 +25,9 @@ object Example {
       rs.getInt("some_value")
     )
 
-    def bindParams(ps: PreparedStatement, o: MyModel) {
-      ps.set(1, o.name)
-      ps.set(2, o.someValue)
+    def bindParams(ps: PreparedStatement, o: MyModel)(implicit index: Incremented[Int]) {
+      ps.set(o.name)
+      ps.set(o.someValue)
     }
 
     def setPersisted(o: MyModel, newId: MyModel#PrimaryKey) = o.copy(id = newId, state = ModelState.Persisted)

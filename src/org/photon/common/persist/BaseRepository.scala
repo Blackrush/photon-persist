@@ -28,7 +28,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   val deleteQuery = s"DELETE FROM $table WHERE ${idsWphr(pkColumns, " AND ")}"
 
   def buildModel(rs: ResultSet): T
-  def bindParams(ps: PreparedStatement, o: T)
+  def bindParams(ps: PreparedStatement, o: T)(implicit index: Incremented[Int])
   def setPersisted(o: T, newId: T#PrimaryKey): T
   def setRemoved(o: T): T
 
@@ -49,6 +49,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def persist(o: T): Future[T] = o.state match {
     case ModelState.None => Async {
       connection.prepare(insertQuery, returnGeneratedKeys = true) { ps =>
+        implicit val index = Incremented(1)
         bindParams(ps, o)
 
         ps.executeUpdate()
@@ -61,8 +62,9 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
 
     case ModelState.Persisted => Async {
       connection.prepare(updateQuery) { ps =>
+        implicit val index = Incremented(1)
         bindParams(ps, o)
-        ps.set(columns.size + 1, o.id: T#PrimaryKey)
+        ps.set(o.id: T#PrimaryKey)
 
         ps.executeUpdate()
         o
