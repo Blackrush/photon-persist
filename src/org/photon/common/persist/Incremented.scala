@@ -9,6 +9,8 @@ class Incremented[@specialized(Byte, Short, Int, Long, Float, Double) T]
     value = n.plus(value, n.one)
     tmp
   }
+
+  def apply(): T = get
 }
 
 object Incremented {
