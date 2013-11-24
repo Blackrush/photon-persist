@@ -3,7 +3,7 @@ package org.photon.common.persist
 import com.twitter.util.Future
 import scala.collection.mutable
 
-trait Caching[T <: Model] extends Repository[T] {
+trait Caching[T <: Model] extends Cachable[T] {
   val cache = mutable.Map.empty[T#PrimaryKey, T]
 
   def hydrate(): Future[Unit] = all map { res =>
