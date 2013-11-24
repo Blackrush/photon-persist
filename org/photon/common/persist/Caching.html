@@ -35,13 +35,13 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">Caching</span><span class="tparams">[<span name="T">T &lt;: <a href="Model.html" class="extype" name="org.photon.common.persist.Model">Model</a></span>]</span><span class="result"> extends <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
+        <span class="name">Caching</span><span class="tparams">[<span name="T">T &lt;: <a href="Model.html" class="extype" name="org.photon.common.persist.Model">Model</a></span>]</span><span class="result"> extends <a href="Cachable.html" class="extype" name="org.photon.common.persist.Cachable">Cachable</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Cachable.html" class="extype" name="org.photon.common.persist.Cachable">Cachable</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>], <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -59,7 +59,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.photon.common.persist.Caching"><span>Caching</span></li><li class="in" name="org.photon.common.persist.Repository"><span>Repository</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.photon.common.persist.Caching"><span>Caching</span></li><li class="in" name="org.photon.common.persist.Cachable"><span>Cachable</span></li><li class="in" name="org.photon.common.persist.Repository"><span>Repository</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -83,29 +83,16 @@
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="org.photon.common.persist.Repository#persist" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="persist(o:T):com.twitter.util.Future[T]"></a>
-      <a id="persist(T):Future[T]"></a>
+              <ol><li name="org.photon.common.persist.Repository#all" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="all:com.twitter.util.Future[Seq[T]]"></a>
+      <a id="all:Future[Seq[T]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">persist</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.Caching.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
-    </li><li name="org.photon.common.persist.Repository#remove" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="remove(o:T):com.twitter.util.Future[T]"></a>
-      <a id="remove(T):Future[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">remove</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.Caching.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
+        <span class="name">all</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
@@ -192,19 +179,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.photon.common.persist.Caching#all" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="all:com.twitter.util.Future[Seq[T]]"></a>
-      <a id="all:Future[Seq[T]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">all</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]]</span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -276,6 +250,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.photon.common.persist.Caching#filter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="filter(predicate:T=&gt;Boolean):Iterable[T]"></a>
+      <a id="filter((T)⇒Boolean):Iterable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">filter</span><span class="params">(<span name="predicate">predicate: (<span class="extype" name="org.photon.common.persist.Caching.T">T</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Iterable">Iterable</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Cachable.html" class="extype" name="org.photon.common.persist.Cachable">Cachable</a></dd></dl></div>
     </li><li name="org.photon.common.persist.Repository#filter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="filter[V](column:String,value:V)(implicitevidence$1:org.photon.common.persist.Parameter[V]):com.twitter.util.Future[Seq[T]]"></a>
       <a id="filter[V](String,V)(Parameter[V]):Future[Seq[T]]"></a>
@@ -321,6 +308,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
+    </li><li name="org.photon.common.persist.Caching#find" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="find(predicate:T=&gt;Boolean):Option[T]"></a>
+      <a id="find((T)⇒Boolean):Option[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">find</span><span class="params">(<span name="predicate">predicate: (<span class="extype" name="org.photon.common.persist.Caching.T">T</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Cachable.html" class="extype" name="org.photon.common.persist.Cachable">Cachable</a></dd></dl></div>
     </li><li name="org.photon.common.persist.Repository#findBy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="findBy[V](column:String,value:V)(implicitevidence$2:org.photon.common.persist.Parameter[V]):com.twitter.util.Future[T]"></a>
       <a id="findBy[V](String,V)(Parameter[V]):Future[T]"></a>
@@ -360,6 +360,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.photon.common.persist.Caching#hydrate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hydrate():com.twitter.util.Future[Unit]"></a>
+      <a id="hydrate():Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hydrate</span><span class="params">()</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Cachable.html" class="extype" name="org.photon.common.persist.Cachable">Cachable</a></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -412,6 +425,32 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.photon.common.persist.Caching#persist" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="persist(o:T):com.twitter.util.Future[T]"></a>
+      <a id="persist(T):Future[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">persist</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.Caching.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
+    </li><li name="org.photon.common.persist.Caching#remove" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="remove(o:T):com.twitter.util.Future[T]"></a>
+      <a id="remove(T):Future[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">remove</span><span class="params">(<span name="o">o: <span class="extype" name="org.photon.common.persist.Caching.T">T</span></span>)</span><span class="result">: <span class="extype" name="com.twitter.util.Future">Future</span>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.photon.common.persist.Caching">Caching</a> → <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -504,7 +543,9 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.photon.common.persist.Repository">
+        <div class="parent" name="org.photon.common.persist.Cachable">
+              <h3>Inherited from <a href="Cachable.html" class="extype" name="org.photon.common.persist.Cachable">Cachable</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</h3>
+            </div><div class="parent" name="org.photon.common.persist.Repository">
               <h3>Inherited from <a href="Repository.html" class="extype" name="org.photon.common.persist.Repository">Repository</a>[<span class="extype" name="org.photon.common.persist.Caching.T">T</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
