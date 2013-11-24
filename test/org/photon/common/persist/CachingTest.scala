@@ -69,11 +69,13 @@ class CachingTest extends FreeSpec with Matchers with BeforeAndAfter {
   }
 
   "A cached repository" - {
-    "should be empty on creation" in new Fixture {
-      repo.cache should be ('empty)
-    }
-
     "should update his backing map" - {
+      "when hydrated" in new Fixture {
+        result(repo hydrate())
+
+        repo.cache should not be ('empty)
+      }
+
       "when retrieving data by id" in new Fixture {
         val v = result(repo find 1)
 
@@ -99,7 +101,11 @@ class CachingTest extends FreeSpec with Matchers with BeforeAndAfter {
       }
     }
     
-    "should not hydrate his backing map" - {
+    "should not update his backing map" - {
+      "when created" in new Fixture {
+        repo.cache should be ('empty)
+      }
+
       "when already containing data" in new Fixture {
         result(repo hydrate())
         
