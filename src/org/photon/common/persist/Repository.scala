@@ -5,7 +5,7 @@ import java.sql.PreparedStatement
 import scala.collection.generic.CanBuildFrom
 
 trait Repository[T <: Model] {
-  def all[Result](implicit cbf: CanBuildFrom[_, T, Result]): Future[Result]
+  def all: Future[Seq[T]]
   def find(id: T#PrimaryKey): Future[T]
   def where[Result, Ignored](query: String)(fn: PreparedStatement => Ignored)(implicit cbf: CanBuildFrom[_, T, Result]): Future[Result]
   def persist(o: T): Future[T]

@@ -33,7 +33,7 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def setRemoved(o: T): T
 
 
-  def all[Result](implicit cbf: CanBuildFrom[_, T, Result]): Future[Result] = Async {
+  def all: Future[Seq[T]] = Async {
     connection.statement(selectQuery)(_.getResultSet.map(buildModel))
   }
 
