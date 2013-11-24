@@ -57,6 +57,8 @@ class CachingTest extends FreeSpec with Matchers with BeforeAndAfter {
       ");"
 
     stmt addBatch "INSERT INTO my_repository(value) VALUES('such name');"
+    stmt addBatch "INSERT INTO my_repository(value) VALUES('such fake value');"
+    stmt addBatch "INSERT INTO my_repository(value) VALUES('fakelol');"
 
     stmt.executeBatch()
   }
@@ -71,31 +73,67 @@ class CachingTest extends FreeSpec with Matchers with BeforeAndAfter {
       repo.cache should be ('empty)
     }
 
-    "should hydrate his backing map" - {
+    "should update his backing map" - {
       "when retrieving data by id" in new Fixture {
         val v = result(repo find 1)
 
         repo.cache should have size 1
-        repo.cache(1) should === (v)
+        repo.cache(v.id) should === (v)
       }
 
-      "when retrieving all data" in new Fixture {
-        val list = result(repo.all)
+      "when persisting data" in new Fixture {
+        val v = result(repo persist MyModel(-1, "wow"))
 
-        repo.cache should have size list.size
-        repo.cache.values should contain theSameElementsAs list
+        repo.cache should have size 1
+        repo.cache(v.id) should === (v)
+      }
+
+      "when removing data" in new Fixture {
+        var v = result(repo find 1)
+
+        repo.cache should have size 1
+
+        v = result(repo remove v)
+
+        repo.cache should be ('empty)
       }
     }
     
     "should not hydrate his backing map" - {
       "when already containing data" in new Fixture {
-        result(repo.all) // hydrates cache
+        result(repo hydrate())
         
         repo.cache should not be ('empty)
         val cacheSize = repo.cache.size
         
         result(repo find 1)
         repo.cache should have size (cacheSize)
+      }
+
+      "when persisting already persisted data" in new Fixture {
+        var v = result(repo find 2)
+
+        repo.cache should have size 1
+
+        v = result(repo persist v.copy(value = "such edit"))
+
+        repo.cache should have size 1
+      }
+    }
+
+    "allows to query cache" - {
+      "through find" in new Fixture {
+        result(repo hydrate())
+        repo.cache should not be ('empty)
+
+        repo.find(x => x.value == "fakelol") should not be None
+      }
+
+      "through filter" in new Fixture {
+        result(repo hydrate())
+        repo.cache should not be ('empty)
+
+        repo.filter(x => x.value == "fakelol") should have size 1
       }
     }
   }
