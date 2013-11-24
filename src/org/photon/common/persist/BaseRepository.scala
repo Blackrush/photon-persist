@@ -50,7 +50,6 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
     case ModelState.None => Async {
       connection.prepare(insertQuery, returnGeneratedKeys = true) { ps =>
         bindParams(ps, o)
-        ps.set(columns.size, o.id: T#PrimaryKey)
 
         ps.executeUpdate()
         ps.getGeneratedKeys.map(_.get[T#PrimaryKey](1)).headOption match {
@@ -63,6 +62,9 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
     case ModelState.Persisted => Async {
       connection.prepare(updateQuery) { ps =>
         bindParams(ps, o)
+        ps.set(columns.size + 1, o.id: T#PrimaryKey)
+
+        ps.executeUpdate()
         o
       }
     }
