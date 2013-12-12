@@ -11,8 +11,8 @@ trait Repository[T <: Model] {
   def persist(o: T): Future[T]
   def remove(o: T): Future[T]
 
-  def filter[V: Parameter](column: String, value: V): Future[Seq[T]] =
-    where(s"$column=?")(implicitly[Parameter[V]].set(_, 1, value))
+  def filter[V](column: String, value: V)(implicit Param: Parameter[V]): Future[Seq[T]] =
+    where(s"$column=?")(Param.set(_, 1, value))
   
   def findBy[V: Parameter](column: String, value: V): Future[T] =
     filter(column, value) map (_.head) // force single value?
