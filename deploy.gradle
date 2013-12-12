@@ -112,7 +112,7 @@ task pushMavenRepo(dependsOn: commitMavenRepo, type: GitPush, description: 'Publ
     //}
 }
 
-task publish(dependsOn: pushMavenRepo, description: 'Release and publish', group: 'Publish')
+task publish(dependsOn: [pushMavenRepo, publishGhPages], description: 'Release and publish', group: 'Publish')
 
 githubPages {
     repoUri = 'git@github.com:Blackrush/photon-persist.git'

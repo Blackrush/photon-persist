@@ -28,12 +28,12 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   val deleteQuery = s"DELETE FROM $table WHERE ${idsWphr(pkColumns, " AND ")}"
 
   def buildModel(rs: ResultSet): T
-  def bindParams(ps: PreparedStatement, o: T)
+  def bindParams(ps: PreparedStatement, o: T)(implicit index: Incremented[Int])
   def setPersisted(o: T, newId: T#PrimaryKey): T
   def setRemoved(o: T): T
 
 
-  def all[Result](implicit cbf: CanBuildFrom[_, T, Result]): Future[Result] = Async {
+  def all: Future[Seq[T]] = Async {
     connection.statement(selectQuery)(_.getResultSet.map(buildModel))
   }
 
@@ -49,21 +49,37 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
   def persist(o: T): Future[T] = o.state match {
     case ModelState.None => Async {
       connection.prepare(insertQuery, returnGeneratedKeys = true) { ps =>
-        bindParams(ps, o)
-        ps.set(columns.size, o.id: T#PrimaryKey)
+        {
+          implicit val index = Index(1)
+          bindParams(ps, o)
+        }
 
-        ps.executeUpdate()
-        ps.getGeneratedKeys.map(_.get[T#PrimaryKey](1)).headOption match {
-          case Some(id) => setPersisted(o, id)
-          case None => throw PersistException(reason = "database did not returned new id")
+        connection.transaction {
+          ps.executeUpdate()
+
+          ps.getGeneratedKeys.map(_.get[T#PrimaryKey](1)).headOption match {
+            case Some(id) => setPersisted(o, id)
+            case None => throw PersistException(reason = "database did not returned new id")
+          }
         }
       }
     }
 
     case ModelState.Persisted => Async {
       connection.prepare(updateQuery) { ps =>
-        bindParams(ps, o)
-        o
+        {
+          implicit val index = Index(1)
+          bindParams(ps, o)
+          ps.set(o.id: T#PrimaryKey)
+        }
+
+        connection.transaction {
+          ps.executeUpdate() match {
+            case 1 => o
+            case n if n <= 0 => throw PersistException("the sql update query has not affected any rows")
+            case n if n >= 2 => throw PersistException("the sql update query has affected more than one row")
+          }
+        }
       }
     }
 
@@ -78,10 +94,12 @@ abstract class BaseRepository[T <: Model](connection: Connection)(implicit pkPar
       connection.prepare(deleteQuery) { ps =>
         ps.set(1, o.id: T#PrimaryKey)
 
-        ps.executeUpdate() match {
-          case 1 => setRemoved(o)
-          case n if n <= 0 => throw PersistException("the sql delete query has not affected any rows")
-          case n if n >= 2 => throw PersistException("the sql delete query has affected more than one row")
+        connection.transaction {
+          ps.executeUpdate() match {
+            case 1 => setRemoved(o)
+            case n if n <= 0 => throw PersistException("the sql delete query has not affected any rows")
+            case n if n >= 2 => throw PersistException("the sql delete query has affected more than one row")
+          }
         }
       }
     }

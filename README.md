@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-  compile 'org.photon.common:photon-persist:0.1.1'
+  compile 'org.photon.common:photon-persist:0.1.3'
 }
 ```
 
@@ -29,7 +29,7 @@ dependencies {
 
 ```scala
 libraryDependencies := Seq(
-  "org.photon.common" %% "photon-persist" % "0.1.1",
+  "org.photon.common" % "photon-persist" % "0.1.3",
 )
 ```
 

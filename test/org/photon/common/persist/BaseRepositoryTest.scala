@@ -28,8 +28,8 @@ class BaseRepositoryTest extends FreeSpec with Matchers with BeforeAndAfter {
       state = ModelState.Persisted
     )
 
-    def bindParams(ps: PreparedStatement, o: MyModel) {
-      ps.set(1, o.value)
+    def bindParams(ps: PreparedStatement, o: MyModel)(implicit index: Incremented[Int]) {
+      ps.set(o.value)
     }
 
     def setPersisted(o: MyModel, newId: Int) = o.copy(id = newId, state = ModelState.Persisted)
