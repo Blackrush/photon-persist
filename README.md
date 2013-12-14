@@ -25,7 +25,7 @@ dependencies {
 
 ### With SBT
 
-(**note yet published**)
+(**not yet published**)
 
 ```scala
 libraryDependencies := Seq(
